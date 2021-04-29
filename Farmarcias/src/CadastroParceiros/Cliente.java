@@ -33,74 +33,93 @@ public class Cliente extends Parceiro {
     }
     
     @Override
-    public void validacao(){
-      System.out.println("========== Ficha de Cadastro de Cliente===============");
-      
-          System.out.println("Informe o codigo");
-        setCodigo(scan.nextInt());
-         while (getCodigo()<=0 || getCodigo()>1000) {
-            System.out.println("Codigo Invalido! O código deve começar em 1! \n");
-            setCodigo(scan.nextInt());
-         }
-      
-        scan.nextLine();
-        
-        System.out.println("Informe o nome:");
-        setNome(scan.nextLine());
-        
-        while (getNome().indexOf(" ") == -1 || getNome().substring(0,getNome().indexOf(" ")).length() < 2 || getNome().substring(getNome().lastIndexOf(" ") + 1).length() < 2){
-              System.out.println("Nome Invalido, o campo nome preceisa ter dois nomes e pelo menos 2 caracteres! \n");
-              setNome(scan.nextLine());
-         }
-        
-        System.out.println("Informe o Telefone:");
-        setTelefone(scan.nextLine());
-        while (getTelefone().length() != 10)  {
-              System.out.println("Telefone Invalido, digite um telefone válido! \n");
-         setTelefone(scan.nextLine());
-        }
-        
-        System.out.println("Informe o Email:");
-        setEmail(scan.nextLine());
-
-        while((getEmail().split("@", -1).length-1) != 1){
-              System.out.println("E-mail Invalido, digite um E-mail valido!");
-              setEmail(scan.nextLine());
-         }
-     
-        System.out.println("Informe o celular:");
-        celular = scan.nextLine();
-        
-        while (getCelular().length() != 11)  {
-              System.out.println("Celular Invalido, digite um celular válido!");
-              celular = scan.nextLine();
-        } 
-        
-        System.out.println("Informe o RG");
-        rg = scan.nextLine();
-        while ((getRg().length() < 8) || (getRg().length() > 11)){
-            System.out.println("RG Invalido, o RG deve ter no minimo 8 e no máximo 11 carecteres!");
-            rg = scan.nextLine();
-        }
-    
-        System.out.println("Informe o CPF");
-        cpf = scan.next();
-        while(getCpf().equals("00000000000")||
-                getCpf().equals("11111111111")||
-                getCpf().equals("22222222222")||
-                getCpf().equals("33333333333")||
-                getCpf().equals("44444444444")||
-                getCpf().equals("55555555555")||
-                getCpf().equals("66666666666")||
-                getCpf().equals("77777777777")||
-                getCpf().equals("88888888888")||
-                getCpf().equals("99999999999")||
-                getCpf().length()!=11){
-            System.out.println("CPF Inválido, digite um CPF válido!");
-            cpf = scan.next();
-        }
-
+    public boolean validarCodigo(){
+    	boolean validado = false;
+    	if(this.getCodigo()<=0 || this.getCodigo()>1000){
+    		validado = false;
+    	}else{
+    		validado = true;
+    	}
+    	
+    	return validado;
     }
+
+    @Override
+    public boolean validarNome(){
+    	boolean validado = false;
+    	if(this.getNome().indexOf(" ") == -1 || this.getNome().substring(0,this.getNome().indexOf(" ")).length() < 2 || this.getNome().substring(this.getNome().lastIndexOf(" ") + 1).length() < 2){
+    		validado = false;
+    	}else{
+    		validado = true;
+    	}
+    	
+    	return validado;
+    }
+    @Override
+    public boolean validarTelefone(){
+    	boolean validado = false;
+    	if(this.getTelefone().length() != 10){
+    		validado = false;
+    	}else{
+    		validado = true;
+    	}
+    	
+    	return validado;
+    }
+    @Override
+    public boolean validarEmail(){
+    	boolean validado = false;
+    	if((this.getEmail().split("@", -1).length-1) != 1){
+    		validado = false;
+    	}else{
+    		validado = true;
+    	}
+    	
+    	return validado;
+    }
+    
+    public boolean validarCelular(){
+        boolean validado = false;
+        if(this.getCelular().length() != 11){
+            validado = false;
+        }else{
+            validado = true;
+        }
+        
+        return validado;
+        
+    }
+    
+    public boolean validarRg(){
+        boolean validado = false;
+        if((this.getRg().length() < 8) || (this.getRg().length() > 11)){
+           validado = false;
+        }else{
+            validado = true;
+        }
+        return validado;
+        
+    }
+    public boolean validarCpf(){
+        boolean validado = false;
+              if(this.getCpf().equals("00000000000")||
+                 this.getCpf().equals("11111111111")||
+                 this.getCpf().equals("22222222222")||
+                 this.getCpf().equals("33333333333")||
+                 this.getCpf().equals("44444444444")||
+                 this.getCpf().equals("55555555555")||
+                 this.getCpf().equals("66666666666")||
+                 this.getCpf().equals("77777777777")||
+                 this.getCpf().equals("88888888888")||
+                 this.getCpf().equals("99999999999")||
+                 this.getCpf().length()!=11){
+             validado = false;
+         }else{
+             validado = true;
+         }
+         return validado;
+     }
+    
         
     @Override
     public void imprimir(){

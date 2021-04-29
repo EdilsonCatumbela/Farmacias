@@ -42,7 +42,10 @@ public abstract class Parceiro {
         this.email = email;
     }
     
-    public abstract void validacao();
+    public abstract boolean validarCodigo();
+    public abstract boolean validarNome();
+    public abstract boolean validarTelefone();
+    public abstract boolean validarEmail();
     
     public abstract void imprimir();
        
